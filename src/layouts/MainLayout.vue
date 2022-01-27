@@ -13,8 +13,7 @@
 
         <q-toolbar-title> Quasar App </q-toolbar-title>
 
-        <div>Quasar v{{1 }}</div>
-
+        <div>Quasar v{{ 1 }}</div>
       </q-toolbar>
     </q-header>
 
@@ -46,16 +45,16 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksData = [
   {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev"
+    title: "Entrar",
+    caption: "Entrar na conta",
+    icon: "email",
+    link: "http://localhost:8080/#/login"
   },
   {
-    title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework"
+    title: "Cadastro",
+    caption: "Cadastrar conta",
+    icon: "email",
+    link: "http://localhost:8080/#/cadastro"
   },
   {
     title: "Discord Chat Channel",
