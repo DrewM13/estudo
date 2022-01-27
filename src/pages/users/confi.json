@@ -1,0 +1,54 @@
+{
+  "editor.fontSize": 15,
+ "editor.formatOnSave": true,
+ "editor.codeActionsOnSave": {
+   "source.fixAll": true
+ },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": false,
+ "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+ "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+ "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+ "vetur.format.defaultFormatter.html": "js-beautify-html",
+ "vetur.format.defaultFormatter.js": "vscode-typescript",
+ "workbench.iconTheme": "vscode-icons",
+ "diffEditor.ignoreTrimWhitespace": false,
+ "editor.minimap.enabled": false,
+ "[javascript]": {
+   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+ },
+ "workbench.colorTheme": "Dracula Soft",
+ "git.autofetch": true,
+ "workbench.startupEditor": "newUntitledFile",
+ "[vue]": {
+   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+ },
+ "stories.username": "representative_Roos Tarpals",
+ "git.confirmSync": false,
+ "explorer.confirmDelete": false,
+ "git.enableSmartCommit": true,
+ "[typescriptreact]": {
+   "editor.defaultFormatter": "vscode.typescript-language-features"
+ },
+ "discord.detailsEditing": "Editing {totallines} Lines",
+ "discord.detailsDebugging": "Debugging {totallines} Lines",
+ "discord.lowerDetailsDebugging": "Debugging Now",
+ "discord.lowerDetailsEditing": "Coding Now",
+ "explorer.compactFolders": false,
+ "editor.suggestSelection": "first",
+ "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+ "[css]": {
+   "editor.defaultFormatter": "vscode.git"
+ },
+ "workbench.colorCustomizations": {
+   "[Material Theme]": {}
+ },
+ "terminal.integrated.defaultProfile.windows": "Git Bash",
+ "eslint.format.enable": true,
+ "eslint.lintTask.enable": true,
+ "eslint.alwaysShowStatus": true,
+ "eslint.debug": true,
+ "tabnine.experimentalAutoImports": true,
+ "prettier.embeddedLanguageFormatting": "off"
+}

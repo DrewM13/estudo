@@ -13,8 +13,8 @@
 
         <q-toolbar-title> Quasar App </q-toolbar-title>
 
-        <div>Quasar v{{ text }}</div>
-        <q-input v-model="text" type="text" label="Label" />
+        <div>Quasar v{{1 }}</div>
+
       </q-toolbar>
     </q-header>
 

@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
-  "author": "",
+  "author": "DrewM13 <andrew.maciel@hotmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@quasar/cli": "^1.2.2",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
@@ -38,5 +39,8 @@
     "node": ">= 10.18.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/DrewM13/estudo.git",
+  "license": "MIT"
 }

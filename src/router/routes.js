@@ -12,8 +12,12 @@ const routes = [
     component: () => import("pages/Error404.vue")
   },
   {
-    path: "/seila",
+    path: "/pag2",
     component: () => import("../pages/pag2")
+  },
+  {
+    path:"/login",
+    component:() => import("../pages/users/usuario.vue")
   }
 ];
 
