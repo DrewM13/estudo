@@ -31,17 +31,20 @@
           </div>
           <div class="row justify-center">
             <q-btn
-              color="white"
-              text-color="black"
+              color="primary"
+              text-color="white"
               label="Entrar"
               @click="send()"
-            />
+
+            /></div>
+            <div class="row justify-center">
             <q-btn
-              color="white"
-              text-color="black"
+              color="primary"
+              text-color="white"
               label="Realizar cadastro"
               @click="pagina = 1"
             />
+
           </div>
         </div>
         <div class="q-pa-md" v-if="pagina === 1">
@@ -50,46 +53,59 @@
               filled
               v-model="newUser.name"
               label="Nome"
-              style="width: 200px"
+
             />
             <q-input
               filled
               type="email"
               v-model="newUser.email"
               label="Email"
-              style="width: 200px"
+
             />
             <q-input
               filled
-              type="password"
-              v-model="newUser.password"
+              v-model="currentUser.password"
               label="Senha"
-              style="width: 200px"
-            />
+              :type="isPwd ? 'password' : 'text'">
+
+              <template v-slot:append>
+                <q-icon
+                  :name="isPwd ? 'visibility_off' : 'visibility'"
+                  class="cursor-pointer"
+                  @click="isPwd = !isPwd"
+                />
+              </template>
+            </q-input>
             <q-btn
               color="primary"
-              icon="check"
               label="Cadastrar"
               @click="submit()"
-            />
+
+            /><div>
+            <q-btn color="primary"  label="Voltar" @click="back()" />
+            </div>
             <!-- {{ newUser }}-->
           </div>
         </div>
         <div v-if="pagina === 2">
           <div class="column">
             <div>
-              <q-input v-model="ToDo.name" label="Digite o a fazer" outlined />
+              <q-input v-model="ToDo.name" label="Digite o afazer" outlined />
             </div>
             <div>
               <q-input
                 v-model="ToDo.text"
-                label="Digite a descrição do a fazer"
+                label="Digite a descrição do afazer"
                 autogrow
                 outlined
               />
+              <div>
+                <q-input outlined v-model="ToDo.token" type="text" label="Token" autogrow />
+              </div>
+              {{logindt.token}}
             </div>
             <div>
-              <q-btn label="Enviar tarefa" @click="sendToDo()"></q-btn>
+              <q-btn label="Enviar tarefa" color="primary" text-color="white" @click="sendToDo()"></q-btn>
             </div>
           </div>
         </div>
@@ -99,6 +115,7 @@
 </template>
 <script>
 import axios from "axios";
+
 
 export default {
   data() {
@@ -110,15 +127,32 @@ export default {
         name: "",
         email: "",
         password: ""
+
       },
       currentUser: {
         email: "",
         password: ""
+
+
       },
       ToDo: {
-        token: "",
         name: "",
-        text: ""
+        text: "",
+        token: ""
+      },
+      Delete:{
+        name:"",
+        password:"",
+        email:"",
+        todo:"",
+        description:""
+      },
+      Update:{
+        name:"",
+        password:"",
+        email:"",
+        todo:"",
+        description:""
       }
     };
   },
@@ -134,33 +168,47 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          alert("Usuário já cadastrado ou erro ao criar o usuário");
+          alert(`Usuário já cadastrado ou erro ao criar o usuário \n ${error}`);
         });
     },
     send() {
-      axios
-        .post(
+      axios.post(
           "https://web.voxdatati.com.br:4443/api/authenticate",
           this.currentUser
         )
         .then((res) => {
-          alert("login efetuado com sucesso!");
           this.logindt = res.data;
           this.pagina = 2;
         })
         .catch((error) => {
           console.log(error);
-          alert("Login não encontrado!");
-        });
+          alert(`Login não encontrado!\n${error}`);
+        })
     },
     sendToDo() {
-      axios
-        .post("https://web.voxdatati.com.br:4443/api/todo", this.ToDo)
+
+        axios.post("https://web.voxdatati.com.br:4443/api/todo", this.ToDo)
         .then((res) => {
-          alert("Tarefa criada com sucesso.");
-          console.log(this.logindt);
-        });
+
+          console.log(res)
+          alert("Tarefa criada com sucesso.")
+
+          })
+
+
+
+          .catch((error)=>{
+            console.log(error)
+            alert(`Erro ao criar tarefa.\n${error}`)
+          })
+
+    },
+    back(){
+      this.pagina=0
     }
   }
 };
+
+
+
 </script>
