@@ -114,11 +114,11 @@
           :columns="columns"
           row-key="name"
         />
-        {{ this.todoList }}
+        <!--{{ this.todoList }}-->
         <div>
           <q-input
             type="number"
-            v-model="idTodo"
+            v-model="idTodoDel"
             label="Digite o Id do item a ser excluído"
           />
           <q-btn color="primary" label="Deletar dado" @click="deleteData()" />
@@ -126,16 +126,17 @@
         <div>
           <q-input
             filled
-            v-model="this.todoList.name"
+            v-model="ToDo.name"
             label="Digite o novo nome da tarefa"
           />
+
           <q-input
-            v-model="this.todoList.text"
+            v-model="ToDo.text"
             type="text"
             label="Digite a nova descrição da tarefa"
             autogrow
           />
-          <q-input type="number" label="Digite o Id do item a ser atualizado" />
+          <q-input v-model="idTodoUpd" type="number" label="Digite o Id do item a ser atualizado" />
           <q-btn color="primary" label="Atualizar dado" @click="updateData()" />
         </div>
         <div>
@@ -155,7 +156,8 @@ export default {
     return {
       logindt: null,
       todoList: null,
-      idTodo: null,
+      idTodoDel: null,
+      idTodoUpd:null,
       pagina: 0,
       isPwd: true,
       newUser: {
@@ -280,7 +282,7 @@ export default {
     },
     deleteData() {
       api
-        .delete(`todo/${this.idTodo}`)
+        .delete(`todo/${this.idTodoDel}`)
         .then((res) => {
           this.ToDoCreated();
         })
@@ -290,9 +292,9 @@ export default {
     },
     updateData() {
       api
-        .put(`todo/${this.idTodo}`)
+        .put(`todo/${this.idTodoUpd}`,this.ToDo)
         .then((res) => {
-          alert(`Item ${this.idTodo} atualizado com sucesso.`);
+          this.ToDoCreated()
         })
         .catch((error) => {
           alert(`Erro ao atualizar tarefa. \n${error}`);
