@@ -3,13 +3,14 @@
     <div>
       <div class="row justify-center">
         <div class="q-gutter-xl" v-if="pagina === 0">
+
           <div>
             <q-input
               outlined
               type="email"
               v-model="currentUser.email"
               label="Email"
-              color=""
+              :rules="[val=>val&&val.length>0||'campo obrigatório']"
             >
             </q-input>
           </div>
@@ -18,6 +19,7 @@
               outlined
               v-model="currentUser.password"
               label="Senha"
+              :rules="[val=>val&&val.length>0||'campo obrigatório']"
               :type="isPwd ? 'password' : 'text'"
             >
               <template v-slot:append>
@@ -31,12 +33,14 @@
           </div>
           <div class="row justify-center">
             <q-btn
+            icon="login"
               color="primary"
               text-color="white"
               label="Entrar"
               @click="send()"
             />
           </div>
+
           <div class="row justify-center">
             <q-btn
               color="primary"
@@ -48,17 +52,20 @@
         </div>
         <div class="q-pa-md" v-if="pagina === 1">
           <div class="q-gutter-md" style="">
-            <q-input filled v-model="newUser.name" label="Nome" />
+
+            <q-input outlined v-model="newUser.name" label="Nome" :rules="[val=>val&&val.length>0||'campo obrigatório']"/>
             <q-input
-              filled
+              outlined
               type="email"
               v-model="newUser.email"
               label="Email"
+              :rules="[val=>val&&val.length>0||'campo obrigatório']"
             />
             <q-input
-              filled
+              outlined
               v-model="newUser.password"
               label="Senha"
+              :rules="[val=>val&&val.length>0||'campo obrigatório']"
               :type="isPwd ? 'password' : 'text'"
             >
               <template v-slot:append>
@@ -69,17 +76,19 @@
                 />
               </template>
             </q-input>
-            <q-btn color="primary" label="Cadastrar" @click="submit()" />
+
+            <q-btn icon="send" color="primary" label="Cadastrar" @click="submit()" />
             <div>
-              <q-btn color="primary" label="Voltar" @click="back()" />
+              <q-btn  icon="replay" color="primary" label="Voltar" @click="back()" />
             </div>
             <!-- {{ newUser }}-->
           </div>
         </div>
         <div v-if="pagina === 2">
           <div class="column">
+
             <div>
-              <q-input v-model="ToDo.name" label="Digite o afazer" outlined />
+              <q-input v-model="ToDo.name" label="Digite o afazer" outlined  :rules="[val=>val&&val.length>0||'campo obrigatório']"/>
             </div>
             <div>
               <q-input
@@ -87,6 +96,7 @@
                 label="Digite a descrição do afazer"
                 autogrow
                 outlined
+                :rules="[val=>val&&val.length>0||'campo obrigatório']"
               />
             </div>
             <div>
@@ -95,13 +105,18 @@
                 color="primary"
                 text-color="white"
                 @click="sendToDo()"
+                no-caps
+                icon="send"
               ></q-btn>
+
             </div>
+
             <div>
               <q-btn
                 color="primary"
                 label="Verificar Afazeres"
                 @click="ToDoCreated()"
+
               />
             </div>
           </div>
@@ -113,34 +128,41 @@
           :data="todoList"
           :columns="columns"
           row-key="name"
-        />
-        <!--{{ this.todoList }}-->
+         />
+
+          <!--{{ this.todoList }}-->
         <div>
           <q-input
+          outlined
             type="number"
             v-model="idTodoDel"
             label="Digite o Id do item a ser excluído"
           />
-          <q-btn color="primary" label="Deletar dado" @click="deleteData()" />
+          <q-btn icon="delete" color="primary"  @click="deleteData()" />
         </div>
         <div>
+
           <q-input
-            filled
+            outlined
             v-model="ToDo.name"
             label="Digite o novo nome da tarefa"
+            :rules="[val=>val&&val.length>0||'campo obrigatório']"
+
           />
 
           <q-input
+          outlined
             v-model="ToDo.text"
             type="text"
             label="Digite a nova descrição da tarefa"
             autogrow
+            :rules="[val=>val&&val.length>0||'campo obrigatório']"
           />
-          <q-input v-model="idTodoUpd" type="number" label="Digite o Id do item a ser atualizado" />
-          <q-btn color="primary" label="Atualizar dado" @click="updateData()" />
+          <q-input outlined v-model="idTodoUpd" type="number" label="Digite o Id do item a ser atualizado" />
+           <q-btn icon="update" color="primary" label="Atualizar dado" @click="updateData()" />
         </div>
         <div>
-          <q-btn color="primary" label="Voltar" @click="backTable()" />
+          <q-btn icon="replay" color="primary" label="Voltar" @click="backTable()" />
         </div>
       </div>
     </div>
@@ -152,8 +174,14 @@ const api = axios.create({
   baseURL: "https://web.voxdatati.com.br:4443/api/"
 });
 export default {
+
   data() {
     return {
+   /* setup(){
+       const hasData = ref(true)
+      selected: ref([rows[ 1 ]]),this.columns,
+      records: computed(() => hasData.value === true ? rows : [])
+    },*/
       logindt: null,
       todoList: null,
       idTodoDel: null,
@@ -204,9 +232,20 @@ export default {
           align: "center",
           field: "text",
           sortable: true
+        },
+        {
+          name:"delete",
+          label:"deletar",
+          field:"delete",
+          action:"delete"
+        },
+        {
+          name:"update",
+          label:"Atualizar",
+          field:"update"
         }
       ]
-    };
+    }
   },
   created() {
     this.datalogin();
