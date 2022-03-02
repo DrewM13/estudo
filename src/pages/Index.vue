@@ -1,3 +1,4 @@
+
 <template>
   <q-page class="flex flex-center">
     <div>
@@ -95,6 +96,7 @@
               />
             </div>
             <!-- {{ newUser }}-->
+
           </div>
         </div>
         <div v-if="pagina === 2">
@@ -149,6 +151,7 @@
           row-key="name"
         />
         <!--{{ this.todoList }}-->
+
         <div>
           <q-input
             outlined
@@ -199,7 +202,10 @@
     </div>
   </q-page>
 </template>
+
+
 <script>
+
 import axios from "axios";
 const api = axios.create({
   baseURL: "https://web.voxdatati.com.br:4443/api/"
